@@ -1,7 +1,9 @@
 # -*- mode: dockerfile; coding: utf-8 -*-
 FROM debian:bullseye-slim AS build
 RUN apt-get update && apt-get -y --no-install-recommends install \
-      llvm-10 lld-10 clang-10 make git ca-certificates \
+      ca-certificates git \
+      cpio make \
+      llvm-10 llvm-10-dev lld-10 clang-10 \
  && rm -rf /var/lib/apt/lists/* \
  && update-alternatives --install \
       /usr/bin/llvm-config llvm-config \
