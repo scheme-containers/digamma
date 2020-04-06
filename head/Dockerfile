@@ -23,6 +23,9 @@ RUN make check
 RUN make install
 
 FROM debian:bullseye-slim
+RUN apt-get update && apt-get -y --no-install-recommends install \
+      llvm-10 \
+ && rm -rf /var/lib/apt/lists/*
 COPY --from=build /usr/local/ /usr/local/
 RUN ln -s digamma /usr/local/bin/scheme-banner
 CMD ["scheme-banner"]
